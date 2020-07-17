@@ -6,7 +6,7 @@ gulp.task("create-windows-installer", function (done) {
   winInstaller({
     appDirectory: "./node_modules/electron/dist",
 
-    outputDirectory: "./release",
+    outputDirectory: "../Estralo-release",
 
     arch: "ia32",
 

@@ -1,12 +1,12 @@
 {
-  "name": "electron-quick-start",
+  "name": "estralo",
   "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "description": "Uma aplicação para controlar eletrônicos com o estralar dos dedos.",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
   },
-  "repository": "https://github.com/electron/electron-quick-start",
+  "repository": "https://github.com/ReinaldoAssis/Estralo",
   "keywords": [
     "Electron",
     "quick",
@@ -14,8 +14,8 @@
     "tutorial",
     "demo"
   ],
-  "author": "GitHub",
-  "license": "CC0-1.0",
+  "author": "Reinaldo Assis",
+  "license": "GNU",
   "devDependencies": {
     "electron": "^9.0.5",
     "electron-windows-installer": "^1.7.8",
@@ -23,10 +23,8 @@
     "gulp": "^4.0.2"
   },
   "dependencies": {
-    "artyom.js": "^1.0.6",
     "auto-launch": "^5.0.5",
     "electron-store": "^5.2.0",
-    "mqtt": "^4.1.0",
-    "speech-to-text": "^2.9.1"
+    "mqtt": "^4.1.0"
   }
 }
