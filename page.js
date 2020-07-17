@@ -56,6 +56,8 @@ setInterval(function () {
 
 async function init() {
   var btn = document.getElementById("startBtn");
+  var barra = document.getElementById("barra");
+  barra.value = 0;
 
   if (btn.textContent == "Parar programa") {
     parar_programa();
@@ -110,7 +112,7 @@ function save() {
   user = document.getElementById("user").value;
   autostart_b = document.getElementById("autostart_brother").checked;
   slider = document.getElementById("overlapSlider").value;
-  topic = document.getElementById("topico").value;
+  topic = document.getElementById("topic").value;
 
   var dt = new Date();
   var now =
@@ -185,7 +187,7 @@ function load_config() {
   if (db.has("last_update")) last.innerHTML = db.get("last_update");
   if (db.has("overlapSlider")) slider.value = db.get("overlapSlider");
   if (db.has("overlapSlider")) slidertxt.innerHTML = db.get("overlapSlider");
-  if (db.has("topico")) topic.innerHTML = db.get("topico");
+  if (db.has("topico")) topic.value = db.get("topico");
 
   if (db.get("autostart_brother")) init();
 }
