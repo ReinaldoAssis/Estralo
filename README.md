@@ -11,9 +11,9 @@ git clone https://github.com/ReinaldoAssis/Estralo.git
 ```bash
 electron-packager ./ --icon=./smarthome.ico --asar --platform=win32 --arch=ia32 --overwrite
 ```
-Para mais informações em como utilizar o electron-packager, clique [aqui](https://github.com/electron/electron-packager#user-content-installation)
+Para mais informações em como utilizar o electron-packager, clique [aqui](https://github.com/electron/electron-packager#user-content-installation).
 
-## Configuraçao
+## Configuração
 
 ![Configuração em branco](https://i.ibb.co/Fqw7H9w/image.png)
 
@@ -24,7 +24,7 @@ A checkbox "Iniciar o programa ao abrir" é auto explicativa, se estiver marcada
 O slide azul vai de 0 até 0.75, quanto maior o valor mais vezes o programa tentará reconhecer sons. O recomendado é utiliza-lo em 0.45 ou 0.50.
 
 ## Utilização
-![Demonstração](https://i.ibb.co/vxr42DM/ezgif-com-add-text.gif)
+![Demonstração](https://i.ibb.co/vxr42DM/ezgif-com-add-text.gif)<br>
 Após a configuração é só curtir seus novos poderes!
 
 ## Contribuições
