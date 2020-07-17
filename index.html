@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Estralo de luz</title>
+    <script src="page.js"></script>
+    <script src="renderer.js"></script>
+
+    <link rel="stylesheet" href="./bulma/css/bulma.min.css" />
+    <style>
+      html {
+        overflow: hidden;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        width: 100%;
+        height: 100%;
+      }
+      body {
+        margin-top: 25px;
+        margin-left: 18px;
+        width: 100%;
+        height: 100%;
+      }
+
+      ::-webkit-scrollbar {
+        width: 0px;
+        background: transparent;
+      }
+
+      button {
+        margin-top: 10px;
+        transition-duration: 0.4s;
+        margin-left: 15px;
+      }
+
+      button:hover {
+        transform: scale(1.1);
+        transition-duration: 0.4s;
+      }
+
+      .is-info {
+        transition-duration: 0.5s;
+        margin: 40px;
+      }
+
+      .is-info:hover {
+        transform: scale(1.05);
+        transition-duration: 0.5s;
+      }
+
+      .pgcontainer {
+        margin-top: 30px;
+        width: 500px;
+        height: 100%;
+      }
+
+      .pgcontainer progress {
+        margin-top: 20px;
+      }
+
+      .f-free {
+        position: absolute;
+        right: 4%;
+        top: 5%;
+      }
+
+      input {
+        margin-top: 10px;
+      }
+
+      #config {
+        transition-duration: 0.3s;
+      }
+
+      .realfooter {
+        top: 80%;
+        position: absolute;
+      }
+
+      .btnicon {
+        transition-duration: 0.3s;
+      }
+
+      .btnicon:hover {
+        transition-duration: 0.3s;
+        transform: scale(1.1);
+      }
+
+      .more {
+        top: 2%;
+        right: 7%;
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body onload="load_config()" ondblclick="dev()">
+    <!--onmousedown="document.getElementById('config').style.opacity = 0;" -->
+    <h1 class="title">Estralo de luz</h1>
+    <h1 id="frase" class="subtitle">Reinaldo Assis</h1>
+
+    <button
+      id="startBtn"
+      type="button"
+      class="button is-primary"
+      onclick="init()"
+    >
+      Iniciar programa
+    </button>
+
+    <script>
+      function config_hideshow() {
+        var conf = document.getElementById("config");
+        conf.style.opacity = conf.style.opacity == 100 ? 0 : 100;
+      }
+    </script>
+
+    <img
+      class="btnicon more"
+      src="./Icons/more-o.svg"
+      onmouseover="document.getElementById('config').style.opacity = 100"
+      onclick="config_hideshow()"
+    />
+
+    <!-- <button
+      id="btn_startCypher"
+      type="button"
+      class="button is-warning"
+      onclick="config_hide()"
+    >
+      Configurações
+    </button> -->
+
+    <div class="pgcontainer">
+      <progress class="progress is-medium" id="barra" max="100"></progress>
+    </div>
+
+    <div class="pgcontainer f-free" id="config" style="opacity: 0;">
+      <div class="card" id="configpage">
+        <header class="card-header">
+          <p class="card-header-title">
+            Configuração
+          </p>
+          <a href="#" class="card-header-icon" aria-label="more options">
+            <span class="icon">
+              <i class="fas fa-angle-down" aria-hidden="true"></i>
+            </span>
+          </a>
+        </header>
+        <div class="card-content">
+          <div class="content">
+            <input
+              class="input is-rounded"
+              type="text"
+              placeholder="IP do MQTT"
+              id="ip"
+            />
+            <input
+              class="input is-rounded"
+              type="text"
+              placeholder="Porta do MQTT"
+              id="porta"
+            />
+            <input
+              class="input is-rounded"
+              type="password"
+              placeholder="Usuário MQTT"
+              id="user"
+            />
+            <input
+              class="input is-rounded"
+              type="password"
+              placeholder="Senha MQTT"
+              id="senha"
+            />
+            <label class="checkbox">
+              <input id="autostart_brother" type="checkbox" />
+              Iniciar o programa ao abrir
+            </label>
+            <a
+              onclick="child_process.execSync('start https://instagram.com/reinaldo_o_rei ')"
+              style="margin-left: 100px;"
+              >@reinaldo_o_rei</a
+            >
+            <div>
+              <label id="sliderValue"></label>
+              <input
+                class="slider"
+                step="0.05"
+                min="0"
+                max="0.75"
+                value="0.45"
+                type="range"
+                onchange="document.getElementById('sliderValue').innerText = this.value"
+                id="overlapSlider"
+              />
+            </div>
+            <br />
+            <time id="last" datetime=""></time>
+          </div>
+        </div>
+        <footer class="card-footer">
+          <a href="#" class="card-footer-item" onclick="save()">Salvar</a>
+          <a href="#" class="card-footer-item">Aplicar</a>
+          <a href="#" class="card-footer-item" onclick="resetar()">Resetar</a>
+        </footer>
+      </div>
+    </div>
+
+    <div id="label-container" hidden="True"></div>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/speech-commands@0.4.0/dist/speech-commands.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"
+      type="text/javascript"
+    ></script>
+
+    <footer class="realfooter">
+      <div class="notification is-info" id="notify">
+        <button
+          class="delete"
+          onclick="document.getElementById('notify').style.opacity = 0"
+        ></button>
+        Programa desenvolvido por Reinaldo Miranda de Assis (2020). Desenvolvido
+        visando <strong>testes</strong>, não é recomendado sua utilização
+        prática.
+      </div>
+    </footer>
+  </body>
+</html>
