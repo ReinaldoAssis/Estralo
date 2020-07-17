@@ -110,6 +110,7 @@ function save() {
   user = document.getElementById("user").value;
   autostart_b = document.getElementById("autostart_brother").checked;
   slider = document.getElementById("overlapSlider").value;
+  topic = document.getElementById("topico").value;
 
   var dt = new Date();
   var now =
@@ -131,6 +132,7 @@ function save() {
   db.set("autostart_brother", autostart_b);
   db.set("last_update", now);
   db.set("overlapSlider", slider);
+  db.set("topico", topic);
 
   load_config();
 }
@@ -141,11 +143,13 @@ function resetar() {
   porta = document.getElementById("porta");
   user = document.getElementById("user");
   autostart_b = document.getElementById("autostart_brother");
+  topic = document.getElementById("topico");
 
   ip.value = "";
   senha.value = "";
   porta.value = "";
   user.value = "";
+  topic.value = "";
   autostart_b.value = false;
   document.getElementById("overlapSlider").value = 0.45;
 
@@ -170,6 +174,7 @@ function load_config() {
   autostart = document.getElementById("autostart_brother");
   slider = document.getElementById("overlapSlider");
   slidertxt = document.getElementById("sliderValue");
+  topic = document.getElementById("topic");
 
   if (db.has("ip")) ip.value = db.get("ip");
   if (db.has("senha")) senha.value = db.get("senha");
@@ -180,6 +185,7 @@ function load_config() {
   if (db.has("last_update")) last.innerHTML = db.get("last_update");
   if (db.has("overlapSlider")) slider.value = db.get("overlapSlider");
   if (db.has("overlapSlider")) slidertxt.innerHTML = db.get("overlapSlider");
+  if (db.has("topico")) topic.innerHTML = db.get("topico");
 
   if (db.get("autostart_brother")) init();
 }
