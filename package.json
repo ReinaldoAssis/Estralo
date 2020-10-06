@@ -17,7 +17,7 @@
   "author": "Reinaldo Assis",
   "license": "GNU",
   "devDependencies": {
-    "electron": "^9.0.5",
+    "electron": "^9.3.0",
     "electron-windows-installer": "^1.7.8",
     "electron-winstaller": "^4.0.0",
     "gulp": "^4.0.2"
